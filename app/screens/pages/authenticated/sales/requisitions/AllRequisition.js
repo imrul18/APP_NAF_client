@@ -17,7 +17,7 @@ import ClientRequisitionService from '../../../../../services/ClientRequisitionS
 
 const AllRequisition = ({navigation}) => {
   const isFocused = useIsFocused();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState();
@@ -60,7 +60,6 @@ const AllRequisition = ({navigation}) => {
     setCurrentPage(res.meta.current_page + 1);
     setLastPage(res.meta.last_page);
     setData(res.data);
-    setLoading(false);
     setRefreshing(false);
   };
 

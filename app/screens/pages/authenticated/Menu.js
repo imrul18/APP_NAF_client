@@ -32,7 +32,7 @@ const Menu = ({navigation}) => {
 
   const [unreadCount, setUnreadCount] = useState(0);
   const getNotification = async () => {
-    const res = await NotificationService.getAll();
+    const res = await NotificationService.getAllCount(1);
 
     let count = 0;
     res.data.forEach(itm => {

@@ -12,18 +12,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ClientQuotationService from '../../../../../services/ClientQuotationService';
 
 const QuotationDetails = ({navigation, route}) => {
+  const {id} = route.params;
   const [data, setData] = useState();
 
   const [loading, setLoading] = useState(true);
 
   const getContract = async () => {
-    setData(await ClientQuotationService.get(route.params.id));
+    setData(await ClientQuotationService.get(id));
     setLoading(false);
   };
 
   useEffect(() => {
     getContract();
-  }, []);
+  }, [id]);
 
   const lockedPartItems = async () => {
     await ClientQuotationService.lock({quotation_id: route.params.id});

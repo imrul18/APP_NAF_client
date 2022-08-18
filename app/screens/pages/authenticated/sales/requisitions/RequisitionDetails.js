@@ -12,18 +12,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ClientRequisitionService from '../../../../../services/ClientRequisitionService';
 
 const RequisitionDetails = ({navigation, route}) => {
+  const {id} = route.params;
   const [data, setData] = useState();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const getContract = async () => {
-    setData(await ClientRequisitionService.get(route.params.id));
+    setData(await ClientRequisitionService.get(id));
     setLoading(false);
   };
 
   useEffect(() => {
     getContract();
-  }, []);
+  }, [id]);
 
   const machineList = item => {
     return (

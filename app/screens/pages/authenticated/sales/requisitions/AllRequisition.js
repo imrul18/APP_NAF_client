@@ -17,7 +17,7 @@ import ClientRequisitionService from '../../../../../services/ClientRequisitionS
 
 const AllRequisition = ({navigation}) => {
   const isFocused = useIsFocused();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState();
@@ -26,7 +26,6 @@ const AllRequisition = ({navigation}) => {
   const [searchData, setSearchData] = useState();
 
   const getRequisition = async () => {
-    setLoading(true);
     const res = await ClientRequisitionService.getAll({page: currentPage});
     setCurrentPage(res.meta.current_page + 1);
     setLastPage(res.meta.last_page);

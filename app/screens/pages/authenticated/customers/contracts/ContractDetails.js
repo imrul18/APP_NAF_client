@@ -11,18 +11,19 @@ import {
 import ClientContractService from '../../../../../services/ClientContractService';
 
 const ContractDetails = ({route}) => {
+  const {id} = route.params;
   const [data, setData] = useState();
 
   const [loading, setLoading] = useState(true);
 
   const getContract = async () => {
-    setData(await ClientContractService.get(route.params.id));
+    setData(await ClientContractService.get(id));
     setLoading(false);
   };
 
   useEffect(() => {
     getContract();
-  }, []);
+  }, [id]);
 
   const machineList = item => {
     return (
@@ -34,7 +35,9 @@ const ContractDetails = ({route}) => {
         }}>
         <Text>{item?.item?.model?.name}</Text>
         <Text>{item?.item?.mfg_number}</Text>
-        <Text style={{paddingRight: 10}}>{item?.item?.model?.space ?? "xx"}</Text>
+        <Text style={{paddingRight: 10}}>
+          {item?.item?.model?.space ?? 'xx'}
+        </Text>
       </View>
     );
   };

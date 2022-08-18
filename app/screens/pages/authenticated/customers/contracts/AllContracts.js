@@ -8,7 +8,7 @@ import {
   Modal,
   ActivityIndicator,
   TouchableOpacity,
-  RefreshControl
+  RefreshControl,
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import moment from 'moment';
@@ -26,7 +26,6 @@ const AllMachines = ({navigation}) => {
   const [searchData, setSearchData] = useState();
 
   const getContract = async () => {
-    setLoading(true);
     const res = await ClientContractService.getAll({page: currentPage});
     setCurrentPage(res.data.meta.current_page + 1);
     setLastPage(res.data.meta.last_page);
@@ -57,7 +56,6 @@ const AllMachines = ({navigation}) => {
     setCurrentPage(res.data.meta.current_page + 1);
     setLastPage(res.data.meta.last_page);
     setData(res.data.data);
-    setLoading(false);
     setRefreshing(false);
   };
 

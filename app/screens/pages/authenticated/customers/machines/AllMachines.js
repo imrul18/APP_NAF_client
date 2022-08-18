@@ -8,7 +8,7 @@ import {
   TextInput,
   Modal,
   ActivityIndicator,
-  RefreshControl
+  RefreshControl,
 } from 'react-native';
 
 import ClientCompanyMachinesService from '../../../../../services/ClientCompanyMachinesService';
@@ -22,7 +22,6 @@ const AllMachines = () => {
   const [searchData, setSearchData] = useState();
 
   const getClientComapnyMachines = async () => {
-    setLoading(true);
     const res = await ClientCompanyMachinesService.getAll();
     setData(res.data);
     setLoading(false);

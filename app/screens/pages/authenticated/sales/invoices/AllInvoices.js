@@ -24,7 +24,6 @@ const AllInvoices = ({navigation}) => {
   const [searchData, setSearchData] = useState();
 
   const getInvoices = async () => {
-    setLoading(true);
     const res = await ClientInvoiceService.getAll({page: currentPage});
     setCurrentPage(res.meta.current_page + 1);
     setLastPage(res.meta.last_page);

@@ -64,6 +64,12 @@ const AllRequisition = ({navigation}) => {
   };
 
   const Requisition = ({item}) => {
+    var statuscolor =
+      item?.status == 'pending'
+        ? '#F0AD4E'
+        : item?.status == 'approved'
+        ? '#5CB85C'
+        : '#D9534F';
     return (
       <TouchableOpacity
         style={styles.card}
@@ -72,6 +78,7 @@ const AllRequisition = ({navigation}) => {
         }}>
         <View style={styles.cardtitle}>
           <Text>Requisition ID</Text>
+          <Text>Status</Text>
           <Text>Priority</Text>
           <Text>Expected Delivery</Text>
           <Text>Quotation</Text>
@@ -81,9 +88,13 @@ const AllRequisition = ({navigation}) => {
           <Text>:</Text>
           <Text>:</Text>
           <Text>:</Text>
+          <Text>:</Text>
         </View>
         <View style={styles.carddetails}>
           <Text>{item?.rq_number}</Text>
+          <Text style={{...styles.status, backgroundColor: statuscolor}}>
+            {item?.status.charAt(0).toUpperCase() + item?.status.slice(1)}
+          </Text>
           <Text>{item?.priority}</Text>
 
           <Text>{item?.expected_delivery}</Text>
@@ -205,6 +216,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 100,
     marginVertical: 300,
     borderRadius: 20,
+  },
+  status: {
+    color: '#fff',
+    borderRadius: 2,
+    textAlign: 'center',
   },
 });
 export default AllRequisition;
